@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Virtual - Acceso</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .tab-active {
+            background-color: #3b82f6;
+            color: white;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <!-- Contenedor principal -->
+    <div class="w-full max-w-md">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+            <div class="inline-block p-4 bg-white/10 backdrop-blur-sm rounded-full mb-4">
+                <i class="fas fa-book-open text-4xl text-white"></i>
+            </div>
+            <h1 class="text-3xl font-bold text-white">Biblioteca Virtual</h1>
+            <p class="text-white/80 mt-2">Tu espacio de conocimiento</p>
+        </div>
+
+        <!-- Tarjeta blanca -->
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <!-- Botones de cambio -->
+            <div class="flex p-2 bg-gray-100">
+                <button id="btnLogin" class="tab-active flex-1 py-3 rounded-xl font-medium transition-all duration-300">
+                    <i class="fas fa-sign-in-alt mr-2"></i>
+                    Iniciar Sesión
+                </button>
+                <button id="btnRegister" class="flex-1 py-3 rounded-xl font-medium text-gray-600 hover:text-gray-800 transition-all duration-300">
+                    <i class="fas fa-user-plus mr-2"></i>
+                    Registrarse
+                </button>
+            </div>
+
+            <!-- Formulario de Login -->
+            <div id="formLogin" class="p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Bienvenido</h2>
+                
+                <form class="space-y-4">
+                    <!-- Email -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-envelope text-blue-500 w-5"></i>
+                            Correo electrónico
+                        </label>
+                        <input type="email" placeholder="tucorreo@ejemplo.com" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition">
+                    </div>
+
+                    <!-- Contraseña -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-lock text-blue-500 w-5"></i>
+                            Contraseña
+                        </label>
+                        <input type="password" placeholder="••••••••" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition">
+                    </div>
+
+                    <!-- Recordar y olvidé -->
+                    <div class="flex items-center justify-between">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="rounded border-gray-300 text-blue-500">
+                            <span class="ml-2 text-sm text-gray-600">Recordarme</span>
+                        </label>
+                        <a href="#" class="text-sm text-blue-500 hover:text-blue-600">¿Olvidaste tu contraseña?</a>
+                    </div>
+
+                    <!-- Botón -->
+                    <button type="submit" class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition transform hover:scale-[1.02]">
+                        <i class="fas fa-sign-in-alt mr-2"></i>
+                        Iniciar Sesión
+                    </button>
+                </form>
+
+                <!-- Redes sociales (FUERA del formulario) -->
+                <div class="relative my-6">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-4 bg-white text-gray-500">O accede con</span>
+                    </div>
+                </div>
+
+                <div class="flex justify-center gap-3">
+                    <button class="w-12 h-12 bg-gray-100 rounded-full hover:bg-gray-200 transition">
+                        <i class="fab fa-google text-gray-600"></i>
+                    </button>
+                    <button class="w-12 h-12 bg-gray-100 rounded-full hover:bg-gray-200 transition">
+                        <i class="fab fa-facebook-f text-gray-600"></i>
+                    </button>
+                    <button class="w-12 h-12 bg-gray-100 rounded-full hover:bg-gray-200 transition">
+                        <i class="fab fa-github text-gray-600"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Formulario de Registro (oculto inicialmente) -->
+            <div id="formRegister" class="p-6 hidden">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Crear cuenta</h2>
+                
+                <form class="space-y-4">
+                    <!-- Nombre y Apellido en grid -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-user text-blue-500"></i>
+                                Nombre
+                            </label>
+                            <input type="text" placeholder="Juan" 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-user text-blue-500"></i>
+                                Apellido
+                            </label>
+                            <input type="text" placeholder="Pérez" 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition">
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-envelope text-blue-500"></i>
+                            Correo electrónico
+                        </label>
+                        <input type="email" placeholder="tucorreo@ejemplo.com" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition">
+                    </div>
+
+                    <!-- Contraseña -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-lock text-blue-500"></i>
+                            Contraseña
+                        </label>
+                        <input type="password" placeholder="••••••••" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition">
+                    </div>
+
+                    <!-- Confirmar contraseña -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-lock text-blue-500"></i>
+                            Confirmar contraseña
+                        </label>
+                        <input type="password" placeholder="••••••••" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition">
+                    </div>
+
+                    <!-- Términos -->
+                    <label class="flex items-start">
+                        <input type="checkbox" class="mt-1 rounded border-gray-300 text-blue-500">
+                        <span class="ml-2 text-sm text-gray-600">
+                            Acepto los <a href="#" class="text-blue-500 hover:text-blue-600">Términos y Condiciones</a> y la 
+                            <a href="#" class="text-blue-500 hover:text-blue-600">Política de Privacidad</a>
+                        </span>
+                    </label>
+
+                    <!-- Botón -->
+                    <button type="submit" class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition transform hover:scale-[1.02]">
+                        <i class="fas fa-user-plus mr-2"></i>
+                        Registrarse
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <p class="text-center text-white/60 text-sm mt-8">
+            <i class="fas fa-shield-alt mr-1"></i>
+            Biblioteca Virtual © 2024 - Todos los derechos reservados
+        </p>
+    </div>
+
+    <!-- JavaScript simple -->
+    <script>
+        const btnLogin = document.getElementById('btnLogin');
+        const btnRegister = document.getElementById('btnRegister');
+        const formLogin = document.getElementById('formLogin');
+        const formRegister = document.getElementById('formRegister');
+
+        btnLogin.addEventListener('click', function() {
+            btnLogin.classList.add('tab-active');
+            btnRegister.classList.remove('tab-active');
+            btnRegister.classList.add('text-gray-600');
+            
+            formLogin.classList.remove('hidden');
+            formRegister.classList.add('hidden');
+        });
+
+        btnRegister.addEventListener('click', function() {
+            btnRegister.classList.add('tab-active');
+            btnLogin.classList.remove('tab-active');
+            btnLogin.classList.add('text-gray-600');
+            
+            formRegister.classList.remove('hidden');
+            formLogin.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>

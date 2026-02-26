@@ -1,16 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Biblioteca</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-
-        <!-- Styles / Scripts -->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Virtual - Acceso</title>
+    
+    <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @else
@@ -19,297 +14,98 @@
             </style>
         @endif
 
-<style>
-
-/* ==========================
-   CONFIGURACIÓN GENERAL
-========================== */
-
-body{
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* HERO */
-.hero-bg{
-    background-image:url("https://images.unsplash.com/photo-1507842217343-583bb7270b66");
-    background-size:cover;
-    background-position:center;
-}
-
-.hero-overlay{
-    background:rgba(0,0,0,0.55);
-}
-
-/* TARJETAS */
-.card-hover:hover{
-    transform:scale(1.03);
-    transition:0.3s ease;
-}
-
-/* BOTONES */
-.btn-primary{
-    background:#2563eb;
-    color:white;
-    padding:10px 18px;
-    border-radius:8px;
-}
-
-.btn-primary:hover{
-    background:#1e40af;
-}
-
-/* FOOTER LINKS */
-.footer-link:hover{
-    text-decoration:underline;
-}
-
-</style>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* transición suave para el sidebar en móvil */
+        .sidebar-transition {
+            transition: transform 0.3s ease-in-out;
+        }
+        .sidebar-hidden {
+            transform: translateX(-100%);
+        }
+        /* evitar scroll horizontal cuando el sidebar está oculto */
+        body {
+            overflow-x: hidden;
+        }
+    </style>
 </head>
-<body class="flex flex-col min-h-screen bg-gray-100">
-
-<!-- ==========================
-         HEADER
-========================== -->
-<header class="bg-blue-900 text-white shadow-lg">
-
-<div class="container mx-auto px-6 py-4 flex justify-between items-center">
-
-<h1 class="text-xl font-bold">Biblioteca Virtual</h1>
-
-<!-- Botón hamburguesa -->
-<button id="menuBtn" class="md:hidden text-2xl">
-☰
-</button>
-
-<!-- Menú escritorio -->
-<nav class="hidden md:flex space-x-6">
-<a href="#" class="hover:text-gray-300">Inicio</a>
-<a href="#" class="hover:text-gray-300">Catálogo</a>
-<a href="#" class="hover:text-gray-300">Servicios</a>
-<a href="#" class="hover:text-gray-300">Contacto</a>
-<a href="{{ route('login') }}" class="hover:text-gray-300">Login</a>
-</nav>
-
-</div>
-
-<!-- Menú móvil -->
-<div id="mobileMenu" class="hidden md:hidden bg-blue-800 px-6 pb-4">
-<a href="#" class="block py-2">Inicio</a>
-<a href="#" class="block py-2">Catálogo</a>
-<a href="#" class="block py-2">Servicios</a>
-<a href="#" class="block py-2">Contacto</a>
-<a href="{{ route('login') }}" class="block py-2">Login</a>
-</div>
-
-</header>
-
-<!-- ==========================
-            MAIN
-========================== -->
-<main class="flex-grow">
-
-<!-- HERO -->
-<section class="hero-bg">
-<div class="hero-overlay text-white text-center py-24 px-6">
-
-<h2 class="text-4xl md:text-5xl font-bold mb-6">
-Bienvenido a la Biblioteca
-</h2>
-
-<p class="text-lg mb-8">
-Un espacio para aprender, investigar y descubrir.
-</p>
-
-<a href="#" class="btn-primary">Explorar Libros</a>
-
-</div>
-</section>
-
-<!-- ==========================
-        CATEGORÍAS
-========================== -->
-<section class="py-16 bg-white">
-<div class="container mx-auto px-6">
-
-<h3 class="text-3xl font-bold text-center mb-10">
-Categorías Populares
-</h3>
-
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-<div class="p-6 bg-gray-100 rounded shadow text-center card-hover">
-<h4 class="font-bold text-lg">Tecnología</h4>
-<p>Programación, redes y sistemas.</p>
-</div>
-
-<div class="p-6 bg-gray-100 rounded shadow text-center card-hover">
-<h4 class="font-bold text-lg">Historia</h4>
-<p>Libros sobre acontecimientos históricos.</p>
-</div>
-
-<div class="p-6 bg-gray-100 rounded shadow text-center card-hover">
-<h4 class="font-bold text-lg">Ciencia</h4>
-<p>Descubre el mundo científico.</p>
-</div>
-
-</div>
-</div>
-</section>
-
-<!-- ==========================
-      LIBROS DESTACADOS
-========================== -->
-<section class="py-16">
-<div class="container mx-auto px-6">
-
-<h3 class="text-3xl font-bold text-center mb-10">
-Libros Destacados
-</h3>
-
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-
-<article class="bg-white shadow rounded overflow-hidden card-hover">
-<img src="https://images.unsplash.com/photo-1512820790803-83ca734da794"
-class="w-full h-56 object-cover">
-<div class="p-4">
-<h4 class="font-bold">Aprender a Programar</h4>
-<p class="text-gray-600 text-sm">Guía para principiantes.</p>
-</div>
-</article>
-
-<article class="bg-white shadow rounded overflow-hidden card-hover">
-<img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d"
-class="w-full h-56 object-cover">
-<div class="p-4">
-<h4 class="font-bold">Historia Universal</h4>
-<p class="text-gray-600 text-sm">Un viaje por el tiempo.</p>
-</div>
-</article>
-
-<article class="bg-white shadow rounded overflow-hidden card-hover">
-<img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f"
-class="w-full h-56 object-cover">
-<div class="p-4">
-<h4 class="font-bold">Inteligencia Artificial</h4>
-<p class="text-gray-600 text-sm">El futuro de la tecnología.</p>
-</div>
-</article>
-
-</div>
-</div>
-</section>
-
-<!-- ==========================
-        SERVICIOS
-========================== -->
-<section class="py-16 bg-white">
-<div class="container mx-auto px-6">
-
-<h3 class="text-3xl font-bold text-center mb-10">
-Servicios
-</h3>
-
-<div class="grid md:grid-cols-3 gap-8 text-center">
-
-<div>
-<h4 class="font-bold text-lg">Préstamo de Libros</h4>
-<p>Solicita libros fácilmente.</p>
-</div>
-
-<div>
-<h4 class="font-bold text-lg">Sala de Lectura</h4>
-<p>Espacios cómodos para estudiar.</p>
-</div>
-
-<div>
-<h4 class="font-bold text-lg">Biblioteca Digital</h4>
-<p>Acceso a recursos en línea.</p>
-</div>
-
-</div>
-</div>
-</section>
-
-<!-- ==========================
-        CONTACTO
-========================== -->
-<section class="py-16">
-<div class="container mx-auto px-6 max-w-xl">
-
-<h3 class="text-3xl font-bold text-center mb-8">
-Contacto
-</h3>
-
-<form class="bg-white p-6 rounded shadow space-y-4">
-
-<input type="text" placeholder="Nombre"
-class="w-full border p-2 rounded">
-
-<input type="email" placeholder="Correo"
-class="w-full border p-2 rounded">
-
-<textarea placeholder="Mensaje"
-class="w-full border p-2 rounded"></textarea>
-
-<button class="btn-primary w-full">
-Enviar
-</button>
-
-</form>
-
-</div>
-</section>
-
-</main>
-
-<!-- ==========================
-          FOOTER
-========================== -->
-<footer class="bg-blue-900 text-white py-10">
-
-<div class="container mx-auto px-6 grid md:grid-cols-3 gap-8">
-
-<div>
-<h4 class="font-bold mb-3">Biblioteca</h4>
-<p>Un espacio para el conocimiento.</p>
-</div>
-
-<div>
-<h4 class="font-bold mb-3">Enlaces</h4>
-<ul>
-<li><a href="#" class="footer-link">Inicio</a></li>
-<li><a href="#" class="footer-link">Catálogo</a></li>
-<li><a href="#" class="footer-link">Contacto</a></li>
-</ul>
-</div>
-
-<div>
-<h4 class="font-bold mb-3">Contacto</h4>
-<p>Email: info@biblioteca.com</p>
-</div>
-
-</div>
-
-<div class="text-center mt-8 text-sm">
-© 2026 Biblioteca Virtual
-</div>
-
-</footer>
-
-<!-- ==========================
-        JAVASCRIPT
-========================== -->
-<script>
-
-const menuBtn = document.getElementById("menuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
-
-menuBtn.addEventListener("click", () => {
-mobileMenu.classList.toggle("hidden");
-});
-
-</script>
-
+<body class="bg-gray-50 font-sans antialiased min-h-screen flex flex-col">
+     
 </body>
 </html>
+
+    <!-- CABECERO (HEADER) con menú principal y hamburguesa -->
+    <header class="bg-indigo-700 text-white shadow-md sticky top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo / nombre de la app -->
+                <div class="flex items-center space-x-3">
+                    <!-- Botón menú hamburguesa (visible solo en móvil) -->
+                    <button id="menuBtn" class="lg:hidden p-2 rounded-md text-indigo-100 hover:text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-white" aria-label="Abrir menú" aria-expanded="false">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <a href="#" class="text-2xl font-serif font-bold tracking-tight">📚 BiblioAdmin</a>
+                </div>
+
+                <!-- Navegación superior (visible en desktop) -->
+                <nav class="hidden md:flex space-x-1 lg:space-x-4" aria-label="Navegación principal">
+                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600 transition">Inicio</a>
+                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600 transition">Usuarios</a>
+                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600 transition">Libros</a>
+                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600 transition">Préstamos</a>
+                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600 transition">Salir</a>
+                </nav>
+                
+                <!-- Perfil / usuario (opcional) -->
+                <div class="flex items-center space-x-3">
+                    <span class="text-sm hidden sm:inline-block">Admin</span>
+                    <div class="h-8 w-8 rounded-full bg-indigo-300 flex items-center justify-center text-indigo-800 font-semibold">A</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL (sidebar + contenido) con flex y altura completa -->
+    <div class="flex flex-1 relative">
+        <!-- SIDEBAR (barra lateral) con overlay para móvil -->
+        <aside id="sidebar" class="sidebar-transition fixed inset-y-0 left-0 w-64 bg-white shadow-xl z-40 lg:static lg:shadow-md transform -translate-x-full lg:translate-x-0" aria-label="Barra lateral de navegación">
+            <div class="p-6 border-b border-gray-200 flex justify-between items-center lg:hidden">
+                <span class="font-semibold text-gray-700">Menú</span>
+                <button id="closeSidebarBtn" class="p-1 rounded-md text-gray-500 hover:bg-gray-100 focus:outline-none">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <nav class="p-4 space-y-1" aria-label="Navegación secundaria">
+                <!-- Ítems del sidebar (coinciden con opciones dadas) -->
+                <a href="#" class="flex items-center px-4 py-3 text-gray-700 bg-indigo-50 border-l-4 border-indigo-600 rounded-r-lg hover:bg-indigo-100 transition">
+                    <i class="fas fa-home w-6 text-indigo-600"></i>
+                    <span class="ml-3 font-medium">Inicio</span>
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-lg transition">
+                    <i class="fas fa-book w-6 text-gray-500"></i>
+                    <span class="ml-3 font-medium">Libros</span>
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-lg transition">
+                    <i class="fas fa-hand-holding-heart w-6 text-gray-500"></i>
+                    <span class="ml-3 font-medium">Préstamos</span>
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-lg transition">
+                    <i class="fas fa-sign-out-alt w-6 text-gray-500"></i>
+                    <span class="ml-3 font-medium">Salir</span>
+                </a>
+                <hr class="my-4 border-gray-200">
+                <p class="px-4 text-xs text-gray-400 uppercase tracking-wider">Estadísticas</p>
+                <div class="px-4 py-2 text-sm text-gray-600">
+                    <p>📊 Préstamos hoy: 23</p>
+                    <p class="mt-1">📖 Libros disponibles: 412</p>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Overlay para cerrar sidebar en móvil (fondo oscuro) -->
+        <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden lg:hidden transition-opacity"></div>
+
+        @yield('content')
+
+        @include('partials.admin.footer')
+        
