@@ -50,4 +50,10 @@ class AuthController extends Controller
             'email' => 'Credenciales inválidas', 
             ]);
     }
+    
+    public function logout()
+    {
+        auth()->logout();
+        return redirect()->route('login');
+    }
 }

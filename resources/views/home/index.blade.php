@@ -10,9 +10,9 @@
                     <p class="text-gray-500 mt-1">Gestiona usuarios, libros y préstamos de la biblioteca</p>
                 </div>
                 <div class="mt-4 sm:mt-0">
-                    <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 text-sm font-medium transition">
-                        + Nuevo préstamo
-                    </button>
+                    <a href="{{ route('libros.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 text-sm font-medium transition">
+                        + Agregar Libro
+                    </a>
                 </div>
             </div>
 
@@ -70,30 +70,31 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
+                            @foreach($libros as $libro)
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">Ana María López</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Cien años de soledad</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">12/02/2026</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{ $libro->nombre }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $libro->autor }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $libro->isbn }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $libro->categoria->nombre }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Activo</span></td>
+                                <td class ="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <a href="{{ route('libros.edit', $libro->id) }}" class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                                    <form action="{{ route('libros.destroy', $libro->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-600 hover:text-red-900 ml-4">Eliminar</button>
+                                    </form>
+                                </td>
                             </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">Carlos Ruiz</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">El nombre del viento</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10/02/2026</td>
-                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pendiente devolución</span></td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">Laura Méndez</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1984</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">08/02/2026</td>
-                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Activo</span></td>
-                            </tr>
+                            @endforeach
                         </tbody>
-                    </table>
+                    </table>                   
                 </div>
             </section>
         </main>
     </div>
+
+    {{ $libros->links() }} <!-- Paginación de Laravel -->
 
     <!-- JavaScript vanilla para controlar el menú hamburguesa y overlay -->
     <script>
