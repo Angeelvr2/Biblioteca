@@ -16,10 +16,10 @@ return new class extends Migration
 
         Schema::create('libros', function (Blueprint $table) {
             $table->id();
-            $table->timestamps()
+            $table->timestamps();
             $table->string('nombre', 250);
             $table->string('isbn', 100);
-            $table->integer('autos',255);
+            $table->string('autor',255);
             $table->string('editorial', 250);
             $table->smallInteger('estatus')->default(0);
             $table->unsignedBigInteger('id_categoria');
