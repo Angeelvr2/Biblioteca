@@ -48,7 +48,7 @@
                 <!-- Navegación superior (visible en desktop) con opción activa -->
                 <nav class="hidden md:flex space-x-1 lg:space-x-4" aria-label="Navegación principal">
                     <a href="{{ route('home') }}" class="px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('home') ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} transition">Inicio</a>
-                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('usuarios*') ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} transition">Usuarios</a>
+                    <a href="{{ route('usuarios.index') }}" class="px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('usuarios*') ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} transition">Usuarios</a>
                     <a href="{{ route('categorias.index') }}" class="px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('categorias*') ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} transition">Categorías</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('libros*') ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} transition">Libros</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('prestamos*') ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} transition">Préstamos</a>
@@ -57,8 +57,8 @@
                 
                 <!-- Perfil / usuario (opcional) -->
                 <div class="flex items-center space-x-3">
-                    <span class="text-sm hidden sm:inline-block">Admin</span>
-                    <div class="h-8 w-8 rounded-full bg-indigo-300 flex items-center justify-center text-indigo-800 font-semibold">A</div>
+                    <span class="text-sm hidden sm:inline-block">{{ Auth::user()->name }}</span>
+                    <div class="h-8 w-8 rounded-full bg-indigo-300 flex items-center justify-center text-indigo-800 font-semibold">{{ Auth::user()->name[0] }}</div>
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
                 </a>
                 
                 <!-- Usuarios -->
-                <a href="#" class="flex items-center px-4 py-3 rounded-lg transition {{ request()->routeIs('usuarios*') ? 'bg-indigo-50 border-l-4 border-indigo-600 text-indigo-700' : 'text-gray-600 hover:bg-gray-100' }}">
+                <a href="{{ route('usuarios.index') }}" class="flex items-center px-4 py-3 rounded-lg transition {{ request()->routeIs('usuarios*') ? 'bg-indigo-50 border-l-4 border-indigo-600 text-indigo-700' : 'text-gray-600 hover:bg-gray-100' }}">
                     <i class="fas fa-users w-6 {{ request()->routeIs('usuarios*') ? 'text-indigo-600' : 'text-gray-500' }}"></i>
                     <span class="ml-3 font-medium">Usuarios</span>
                 </a>

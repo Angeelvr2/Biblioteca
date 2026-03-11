@@ -54,8 +54,8 @@
                 
                 <!-- Perfil / usuario (opcional) -->
                 <div class="flex items-center space-x-3">
-                    <span class="text-sm hidden sm:inline-block">Admin</span>
-                    <div class="h-8 w-8 rounded-full bg-indigo-300 flex items-center justify-center text-indigo-800 font-semibold">A</div>
+                    <span class="text-sm hidden sm:inline-block">{{ Auth::user()->name }}</span>
+                    <div class="h-8 w-8 rounded-full bg-indigo-300 flex items-center justify-center text-indigo-800 font-semibold">{{ Auth::user()->name[0] }}</div>
                 </div>
             </div>
         </div>
