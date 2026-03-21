@@ -29,12 +29,21 @@
             <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ $usuario->email }}</td>
             <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ $usuario->user_type }}</td>
             <td class="px-6 py-4 text-sm font-medium text-gray-900">
-                <a href="{{ route('usuarios.edit', $usuario->id) }}" class="text-indigo-600 hover:text-indigo-900 font-medium transition">✏️ Editar</a>
-                <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" style="display:inline-block;">
+                <td class="px-6 py-4 text-sm font-medium text-gray-900">
+    <a href="{{ route('usuarios.edit', $usuario->id) }}" class="text-indigo-600 hover:text-indigo-900 font-medium transition">✏️ Editar</a>
+    <span class="mx-2">|</span>
+    
+    <a href="{{ route('usuarios.delete_confirm', $usuario->id) }}" class="text-red-600 hover:text-red-900 font-medium transition">
+        🗑️ Eliminar
+    </a>   
+<!-- 
+                <form action="" method="POST" style="display:inline-block;">    
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="text-red-600 hover:text-red-900 font-medium transition">🗑️ Eliminar</button>
-                </form>
+                </form> 
+-->
+                
             </td>
         </tr>
         @endforeach
@@ -44,3 +53,4 @@
  </div>
 </div>
 @endsection
+

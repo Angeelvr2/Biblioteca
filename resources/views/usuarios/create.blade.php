@@ -10,10 +10,10 @@
             
             <!-- Campo Nombre -->
             <div>
-                <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre de Usuario</label>
-                <input type="text" name="nombre" id="nombre" value="{{ old('nombre') }}" required
+                <label for="name" class="block text-sm font-medium text-gray-700">Nombre de Usuario</label>
+                <input type="text" name="name" id="name" value="{{ old('name') }}" required
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                    @error('nombre')
+                    @error('name')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
             </div>

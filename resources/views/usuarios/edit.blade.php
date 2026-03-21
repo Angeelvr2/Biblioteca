@@ -8,34 +8,36 @@
         <form action="{{ route('usuarios.update', $usuario->id) }}" method="POST" class="space-y-6">
             @csrf
             @method('PUT')
+            
             <!-- Campo Nombre -->
             <div>
                 <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre de Usuario</label>
-                <input type="text" name="nombre" id="nombre" value="{{ old('nombre', $usuario->name ) }}" required
+                <input type="text" name="nombre" id="nombre" value="{{ old('nombre', $usuario->name) }}" required
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                    @error('nombre')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
+                @error('nombre')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <!-- Campo Email -->
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" name="email" id="email" value="{{ old('email') }}" required
+                <input type="email" name="email" id="email" value="{{ old('email', $usuario->email) }}" required
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                    @error('email')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
+                @error('email')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <!-- Campo Tipo de Usuario -->
             <div>
                 <label for="user_type" class="block text-sm font-medium text-gray-700">Tipo de Usuario</label>
-                <select name="user_type" id="user_type" value="{{ old('user_type') }}" required
+                <select name="user_type" id="user_type" required
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     <option value="">Seleccione un tipo</option>
-                    <option value="user" {{ old('user_type', $usuario->user_type) == 'user' ? 'selected' : }}>Usuario </option>
-                    <option value="admin" {{ old('user_type', $usuario->user_type) == 'admin' ? 'selected' : }}>Administrador </option>
+                    <option value="user" {{ old('user_type', $usuario->user_type) == 'user' ? 'selected' : '' }}>Usuario</option>
+                    <option value="admin" {{ old('user_type', $usuario->user_type) == 'admin' ? 'selected' : '' }}>Administrador</option>
+                </select>
                 @error('user_type')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
