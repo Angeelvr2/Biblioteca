@@ -20,13 +20,13 @@
         <!-- Tarjeta contenedora de la tabla -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
             <div class="overflow-x-auto">
-                <table class="w-full">
+                <table class="min-w-full divide-y divide-gray-200">
                     <!-- Cabecera de la tabla -->
                     <thead class="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white">
                         <tr>
-                            <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">ID</th>
-                            <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Nombre</th>
-                            <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Acciones</th>
+                            <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">ID</th>
+                            <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">Nombre</th>
+                            <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">Acciones</th>
                         </tr>
                     </thead>
                     <!-- Cuerpo de la tabla -->

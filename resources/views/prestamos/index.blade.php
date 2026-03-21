@@ -15,14 +15,15 @@
     <a href="{{ route('prestamos.create') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 shadow-md">Crear Prestamo</a>
 <br><br>
     <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
-        <table class="min-w-full table-auto">
-        <thead>
+    <div class="overflow-x-auto">          
+    <table class="min-w-full table-auto">
+        <thead class="bg-gray-50">
             <tr>
-                <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">ID</th>
-                <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Libro</th>
-                <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Usuario</th>
-                <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Fecha de Préstamo</th>
-                <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Acciones</th>
+                <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">ID</th>
+                <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">Libro</th>
+                <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">Usuario</th>
+                <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">Fecha de Préstamo</th>
+                <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">Acciones</th>
             </tr>
         </thead>
     <tbody>
@@ -41,6 +42,7 @@
         @endforeach
     </tbody>
     </table>
+    </div>
 </div>
 </div>
 @endsection

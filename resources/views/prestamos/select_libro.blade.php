@@ -17,7 +17,8 @@
             @csrf
             <label for="libro" class="px-2 py-2 block text-sm font-medium text-gray-700">Libro:</label>
             <select name="libro_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                @foreach($libros as $libro)
+            <option value="">Selecciona un libro</option>   
+            @foreach($libros as $libro)
                     <option value="{{ $libro->id }}">{{ $libro->nombre }} - {{ $libro->autor }}</option>
                 @endforeach
             </select>
