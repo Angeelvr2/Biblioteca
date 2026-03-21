@@ -62,6 +62,7 @@ Route::middleware(['auth', 'user_type:admin'])->group(function() {
     Route::post('/prestamos/buscar_usuario', [PrestamosController::class, 'buscar_usuario'])->name('prestamos.buscar_usuario');
     Route::post('/prestamos/select_libro', [PrestamosController::class, 'select_libro'])->name('prestamos.select_libro');
     Route::post('/prestamos/store', [PrestamosController::class, 'store'])->name('prestamos.store');
+    Route::get('/prestamos/{id}/entregar', [PrestamosController::class, 'entregar'])->name('prestamos.entregar');
 });
 
 Route::middleware(['auth', 'user_type:user'])->group(function() {

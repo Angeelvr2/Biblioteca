@@ -14,28 +14,40 @@
 
     <a href="{{ route('prestamos.create') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 shadow-md">Crear Prestamo</a>
 <br><br>
+
     <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
     <div class="overflow-x-auto">          
-    <table class="min-w-full table-auto">
+    <table class="w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
             <tr>
                 <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">ID</th>
                 <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">Libro</th>
                 <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">Usuario</th>
                 <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">Fecha de Préstamo</th>
+                <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">Estatus</th>
+                <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">Fecha de Entrega</th>
                 <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">Acciones</th>
             </tr>
         </thead>
-    <tbody>
-        @foreach($prestamos as $prestamo)
+            <tbody class="bg-white divide-y divide-gray-200">
+                @foreach($prestamos as $prestamo)
             <tr class="border-t">
                 <td class="px-6 py-4 whitespace-nowrap">{{ $prestamo->id }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $prestamo->libro->nombre }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $prestamo->usuario->name }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $prestamo->created_at->format('Y-m-d') }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">   
+                    @if($prestamo->estado == 'pendiente')
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Pendiente</span>
+                    @else
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Entregado</span>
+                    @endif
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ $prestamo->fecha_entrega ? $prestamo->fecha_entrega : '' }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <!-- Aquí puedes agregar botones para editar o eliminar el préstamo -->
-                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                    @if($prestamo->estado == 'pendiente')
+                        <a href="{{ route('prestamos.entregar', $prestamo->id) }}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 shadow-md">Entregar</a>
+                    @endif
                     <a href="#" class="text-red-600 hover:text-red-900 ml-4">Eliminar</a>
                 </td>
             </tr>
