@@ -78,7 +78,6 @@ class PrestamosController extends Controller
         return redirect()->route('prestamos.index')->with('success', 'Préstamo registrado exitosamente.');
     }
 
-
     public function entregar($id)
     {
 
