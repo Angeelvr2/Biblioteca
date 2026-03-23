@@ -1,6 +1,6 @@
 FROM php:8.4-fpm
 
-# Instalar dependencias del sistema
+# Instalar dependencias del sistema (agrega nodejs y npm)
 RUN apt-get update && apt-get install -y \
     nginx \
     git \
@@ -11,6 +11,8 @@ RUN apt-get update && apt-get install -y \
     zip \
     curl \
     libpq-dev \
+    nodejs \
+    npm \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd
 
 # Instalar Composer
@@ -22,8 +24,11 @@ WORKDIR /var/www
 # Copiar proyecto
 COPY . .
 
-# Instalar dependencias de Laravel
+# Instalar dependencias de PHP
 RUN composer install --no-dev --optimize-autoloader
+
+# Instalar dependencias de Node.js y compilar Vite
+RUN npm install && npm run build
 
 # Permisos
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
