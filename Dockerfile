@@ -1,6 +1,18 @@
+# ---------- ETAPA 1: BUILD DE FRONT ----------
+FROM node:20 AS node_builder
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+RUN npm run build
+
+# ---------- ETAPA 2: BUILD DE BACK ----------
 FROM php:8.4-fpm
 
-# Instalar dependencias del sistema (agrega nodejs y npm)
+# Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
     nginx \
     git \
@@ -11,8 +23,6 @@ RUN apt-get update && apt-get install -y \
     zip \
     curl \
     libpq-dev \
-    nodejs \
-    npm \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd
 
 # Instalar Composer
@@ -24,11 +34,11 @@ WORKDIR /var/www
 # Copiar proyecto
 COPY . .
 
-# Instalar dependencias de PHP
-RUN composer install --no-dev --optimize-autoloader
+# Copiar assets ya compilados
+COPY --from=node_builder /app/public/build /var/www/public/build
 
-# Instalar dependencias de Node.js y compilar Vite
-RUN npm install && npm run build
+# Instalar dependencias de Laravel
+RUN composer install --no-dev --optimize-autoloader
 
 # Permisos
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
