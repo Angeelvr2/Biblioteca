@@ -22,7 +22,7 @@ php artisan key:generate --force
 php artisan storage:link --force
 
 # Migraciones
-php artisan migrate --force
+php artisan migrate:fresh --force
 
 # Cachear para producción
 php artisan config:cache
