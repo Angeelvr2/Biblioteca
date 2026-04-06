@@ -42,8 +42,8 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Permisos (CORREGIDO)
 RUN chown -R www-data:www-data /var/www \
-    && chmod -R 775 /var/www/storage \
-    && chmod -R 775 /var/www/bootstrap/cache
+    && chmod -R 777 /var/www/storage \
+    && chmod -R 777 /var/www/bootstrap/cache
 
 # Copiar configuración de nginx
 COPY docker/nginx.conf /etc/nginx/sites-available/default
