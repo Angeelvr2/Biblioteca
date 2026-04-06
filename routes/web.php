@@ -12,9 +12,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Redirigir GET a /register hacia el login
+Route::get('/register', function() {
+    return redirect()->route('login');
+});
+
 Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+
 
     #agrupar rutas con Auth
 Route::middleware('auth')->group(function() {
