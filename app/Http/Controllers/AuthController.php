@@ -11,29 +11,29 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function register()
-    {
-        # Validar datos de registro
-        $validateData = request()->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'password_confirmation' => 'required|string|min:8',
-        ]);
+    public function register(Request $request)  // ✅ Agregar Request
+{
+    # Validar datos de registro
+    $validateData = $request->validate([  // ✅ Usar $request
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:8|confirmed',
+        'password_confirmation' => 'required|string|min:8',
+    ]);
 
-        # Crear usuario
-        $user = \App\Models\User::create([
-            'name' => $validateData['name'],
-            'email' => $validateData['email'],
-            'password' => bcrypt($validateData['password']),
-            'username' => $validateData['email'], // Asignar el email como username
-            'user_type' => 'user', // Asignar un tipo de usuario por defecto
-        ]);
+    # Crear usuario
+    $user = \App\Models\User::create([
+        'name' => $validateData['name'],
+        'email' => $validateData['email'],
+        'password' => bcrypt($validateData['password']),
+        'username' => $validateData['email'],
+        'user_type' => 'user',
+    ]);
 
-        #Redirigir o Iniciar sesión automáticamente
-        auth()->login($user);
-        return redirect()->route('home');
-    }
+    # Redirigir o Iniciar sesión automáticamente
+    auth()->login($user);
+    return redirect()->route('home');
+}
 
     public function login(Request $request)
     {
