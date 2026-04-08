@@ -3,9 +3,6 @@
 echo "=== 1. Arreglando permisos ==="
 chmod -R 777 /var/www/storage
 chmod -R 777 /var/www/bootstrap/cache
-chmod -R 777 /var/www/storage/logs
-touch /var/www/storage/logs/laravel.log
-chmod 777 /var/www/storage/logs/laravel.log
 
 echo "=== 2. Iniciando PHP-FPM ==="
 php-fpm &
@@ -23,13 +20,16 @@ php artisan key:generate --force
 echo "=== 5. Link storage ==="
 php artisan storage:link --force
 
-echo "=== 6. Recreando base de datos (fresh) ==="
-php artisan migrate:fresh --force
+echo "=== 6. AGREGANDO COLUMNA user_type ==="
+php artisan db:statement "ALTER TABLE users ADD COLUMN IF NOT EXISTS user_type VARCHAR(255) DEFAULT 'user';"
 
-echo "=== 7. Cacheando ==="
+echo "=== 7. Ejecutando migraciones ==="
+php artisan migrate --force
+
+echo "=== 8. Cacheando ==="
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 
-echo "=== 8. Iniciando Nginx ==="
+echo "=== 9. Iniciando Nginx ==="
 nginx -g "daemon off;"
