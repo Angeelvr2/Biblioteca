@@ -20,8 +20,8 @@ php artisan key:generate --force
 echo "=== 5. Link storage ==="
 php artisan storage:link --force
 
-echo "=== 6. AGREGANDO COLUMNA user_type ==="
-php artisan db:statement "ALTER TABLE users ADD COLUMN IF NOT EXISTS user_type VARCHAR(255) DEFAULT 'user';"
+echo "=== 6. AGREGANDO COLUMNA user_type (usando DB facade) ==="
+php artisan tinker --execute="try { DB::statement('ALTER TABLE users ADD COLUMN IF NOT EXISTS user_type VARCHAR(255) DEFAULT 'user''); echo 'Columna agregada o ya existe'; } catch(Exception \$e) { echo 'Error: ' . \$e->getMessage(); }"
 
 echo "=== 7. Ejecutando migraciones ==="
 php artisan migrate --force
