@@ -1,33 +1,35 @@
 #!/bin/bash
 
-# Reforzar permisos (importante)
-chmod -R 775 /var/www/storage
-chmod -R 775 /var/www/bootstrap/cache
+echo "=== 1. Arreglando permisos ==="
+chmod -R 777 /var/www/storage
+chmod -R 777 /var/www/bootstrap/cache
+chmod -R 777 /var/www/storage/logs
+touch /var/www/storage/logs/laravel.log
+chmod 777 /var/www/storage/logs/laravel.log
 
-# Iniciar PHP-FPM en background
+echo "=== 2. Iniciando PHP-FPM ==="
 php-fpm &
 
-# Esperar un poco
 sleep 3
 
-# Limpiar caché primero
+echo "=== 3. Limpiando caché ==="
 php artisan config:clear
 php artisan cache:clear
 php artisan view:clear
 
-# Generar key si no existe
+echo "=== 4. Generando key ==="
 php artisan key:generate --force
 
-# Link storage
+echo "=== 5. Link storage ==="
 php artisan storage:link --force
 
-# Migraciones
+echo "=== 6. Recreando base de datos (fresh) ==="
 php artisan migrate:fresh --force
 
-# Cachear para producción
+echo "=== 7. Cacheando ==="
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 
-# Iniciar nginx
+echo "=== 8. Iniciando Nginx ==="
 nginx -g "daemon off;"

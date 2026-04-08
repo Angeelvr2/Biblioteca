@@ -40,10 +40,12 @@ COPY --from=node_builder /app/public/build /var/www/public/build
 # Instalar dependencias de Laravel
 RUN composer install --no-dev --optimize-autoloader
 
-# Permisos (CORREGIDO)
+# Permisos (CORREGIDO CON LOG)
 RUN chown -R www-data:www-data /var/www \
     && chmod -R 777 /var/www/storage \
-    && chmod -R 777 /var/www/bootstrap/cache
+    && chmod -R 777 /var/www/bootstrap/cache \
+    && touch /var/www/storage/logs/laravel.log \
+    && chmod 777 /var/www/storage/logs/laravel.log
 
 # Copiar configuración de nginx
 COPY docker/nginx.conf /etc/nginx/sites-available/default
