@@ -20,16 +20,13 @@ php artisan key:generate --force
 echo "=== 5. Link storage ==="
 php artisan storage:link --force
 
-echo "=== 6. AGREGANDO COLUMNA user_type ==="
-php artisan migrate --path=database/migrations/add_user_type_to_users_table.php
+echo "=== 6. RECREANDO TODAS LAS TABLAS (fresh) ==="
+php artisan migrate:fresh --force
 
-echo "=== 7. Ejecutando migraciones restantes ==="
-php artisan migrate --force
-
-echo "=== 8. Cacheando ==="
+echo "=== 7. Cacheando ==="
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 
-echo "=== 9. Iniciando Nginx ==="
+echo "=== 8. Iniciando Nginx ==="
 nginx -g "daemon off;"
