@@ -21,7 +21,7 @@ echo "=== 5. Link storage ==="
 php artisan storage:link --force
 
 echo "=== 6. RECREANDO TODAS LAS TABLAS (fresh) ==="
-php artisan migrate:fresh --force
+php artisan migrate --force
 
 echo "=== 7. Cacheando ==="
 php artisan config:cache
