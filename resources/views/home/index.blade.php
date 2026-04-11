@@ -24,19 +24,19 @@
                             <i class="fas fa-users text-xl"></i>
                         </div>
                         <div class="ml-4">
-                            <h2 class="text-sm font-medium text-gray-500 uppercase tracking-wider">Usuarios registrados</h2>
-                            <p class="text-2xl font-semibold text-gray-800">1,284</p>
+                            <h2 class="text-sm font-medium text-gray-500 uppercase tracking-wider">Total de Usuarios</h2>
+                            <p class="text-2xl font-semibold text-gray-800">{{ $total_usuarios }}</p>
                         </div>
                     </div>
                 </article>
                 <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow transition">
                     <div class="flex items-center">
-                        <div class="p-3 bg-green-100 rounded-full text-green-700">
-                            <i class="fas fa-book-open text-xl"></i>
+                        <div class="p-3 bg-blue-100 rounded-full text-blue-700">
+                            <i class="fas fa-book text-xl"></i>
                         </div>
                         <div class="ml-4">
-                            <h2 class="text-sm font-medium text-gray-500 uppercase tracking-wider">Libros en catálogo</h2>
-                            <p class="text-2xl font-semibold text-gray-800">3,560</p>
+                            <h2 class="text-sm font-medium text-gray-500 uppercase tracking-wider">Total de libros</h2>
+                            <p class="text-2xl font-semibold text-gray-800">{{ $totalLibros }}</p>
                         </div>
                     </div>
                 </article>
@@ -47,7 +47,18 @@
                         </div>
                         <div class="ml-4">
                             <h2 class="text-sm font-medium text-gray-500 uppercase tracking-wider">Préstamos activos</h2>
-                            <p class="text-2xl font-semibold text-gray-800">47</p>
+                            <p class="text-2xl font-semibold text-gray-800">{{ $libros_prestados }}</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow transition">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-amber-100 rounded-full text-amber-700">
+                            <i class="fas fa-clock text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-sm font-medium text-gray-500 uppercase tracking-wider">Devoluciones pendientes</h2>
+                            <p class="text-2xl font-semibold text-gray-800">{{ $devoluciones_pendientes }}</p>
                         </div>
                     </div>
                 </article>
